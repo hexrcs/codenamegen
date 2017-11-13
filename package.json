@@ -4,7 +4,10 @@
   "description": "A simple non-original code name generator for your new project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "dev": "webpack-dev-server",
+    "lint": "eslint **/*.{js,jsx} --quiet",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
