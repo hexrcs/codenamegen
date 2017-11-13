@@ -2,12 +2,11 @@
   "name": "codenamegen",
   "version": "0.0.1",
   "description": "A simple non-original code name generator for your new project",
-  "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack-dev-server",
-    "lint": "eslint **/*.{js,jsx} --quiet",
-    "watch": "webpack --watch"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -22,33 +21,9 @@
     "url": "https://github.com/hexrcs/codenamegen/issues"
   },
   "homepage": "https://github.com/hexrcs/codenamegen#readme",
-  "dependencies": {},
-  "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-eslint": "8.0.2",
-    "babel-loader": "7.1.2",
-    "babel-plugin-dynamic-import-node": "1.2.0",
-    "babel-plugin-syntax-dynamic-import": "6.18.0",
-    "babel-plugin-transform-async-to-generator": "6.24.1",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
-    "babel-plugin-transform-runtime": "6.23.0",
-    "babel-polyfill": "6.26.0",
-    "babel-preset-env": "1.6.1",
-    "babel-preset-react": "6.24.1",
-    "eslint": "4.11.0",
-    "eslint-config-airbnb": "16.1.0",
-    "eslint-config-prettier": "2.7.0",
-    "eslint-config-react": "1.1.7",
-    "eslint-loader": "1.9.0",
-    "eslint-plugin-flow": "2.29.1",
-    "eslint-plugin-flowtype": "2.39.1",
-    "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "6.0.2",
-    "eslint-plugin-prettier": "2.3.1",
-    "eslint-plugin-react": "7.4.0",
-    "prettier": "1.8.2",
-    "webpack": "3.8.1",
-    "webpack-dev-server": "2.9.4"
+  "dependencies": {
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-scripts": "1.0.17"
   }
 }
