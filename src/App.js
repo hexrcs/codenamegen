@@ -16,9 +16,8 @@ async function parseContent(contentPromise) {
     .then(bigEntries => bigEntries.map(item => extractSingleEntries(item)))
     .then(flattenArray)
     .then(flattenedSingleEntries => flattenedSingleEntries.map(item => parseSingleEntryIntoTuple(item)))
-    .then(cleanUndefinedInArray)
+    .then(cleanFalsyInArray)
     .then(tuples => tuples.map(item => item.map(element => cleanNotationOnSingleEntry(element))))
-    // .then(console.log) //we are here
     .catch(console.log);
 }
 
@@ -26,22 +25,18 @@ function randomArrayId(arr) {
   return Math.floor(Math.random() * (arr.length - 0 + 1)) + 0;
 }
 
-async function selectRandomCodeName(parsedContentPormise) {
-  return await parsedContentPormise
-    .then(codeNameArray => codeNameArray[randomArrayId(codeNameArray)])
-    .then(console.log);
+async function selectRandomCodeName(codeNamesPormise) {
+  return await codeNamesPormise.then(codeNameArray => codeNameArray[randomArrayId(codeNameArray)]);
 }
 
-selectRandomCodeName(parseContent(fetchContent()));
+const codeNamesPormise = parseContent(fetchContent());
 
-// console.log(fetchContent());
+logOneCodeName(selectRandomCodeName(codeNamesPormise));
 
-function cleanUndefinedInArray(arr) {
-  return arr.filter(Boolean);
-}
-
-function flattenArray(arr) {
-  return arr.reduce((result, item) => result.concat(item), []);
+async function logOneCodeName(selectedCodeNamePromise) {
+  return await selectedCodeNamePromise.then(codeNameTuple =>
+    console.log(`Your new project code name is "${codeNameTuple[0]}". \nIt was also orginally used for ${codeNameTuple[1]}.`)
+  );
 }
 
 function extractWikiPageContent(rawJSON) {
@@ -79,6 +74,14 @@ function cleanNotationOnSingleEntry(dirtyElement) {
   const noTags = noBrackets.replace(RE_TAGS, "");
   const cleanElement = noTags;
   return cleanElement;
+}
+
+function cleanFalsyInArray(arr) {
+  return arr.filter(Boolean);
+}
+
+function flattenArray(arr) {
+  return arr.reduce((result, item) => result.concat(item), []);
 }
 
 class App extends Component {
