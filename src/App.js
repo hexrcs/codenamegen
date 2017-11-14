@@ -5,7 +5,11 @@ import "./App.css";
 async function fetchContent() {
   const url =
     "https://en.wikipedia.org/w/api.php?action=query&titles=List_of_computer_technology_code_names&prop=revisions&rvprop=content&format=json&origin=*";
-  await fetch(url)
+  return await fetch(url);
+}
+
+async function parseContent(contentPromise) {
+  return await contentPromise
     .then(resp => resp.json())
     .then(extractWikiPageContent)
     .then(extractBigEntries)
@@ -14,11 +18,22 @@ async function fetchContent() {
     .then(flattenedSingleEntries => flattenedSingleEntries.map(item => parseSingleEntryIntoTuple(item)))
     .then(cleanUndefinedInArray)
     .then(tuples => tuples.map(item => item.map(element => cleanNotationOnSingleEntry(element))))
-    .then(console.log) //we are here
+    // .then(console.log) //we are here
     .catch(console.log);
 }
 
-fetchContent();
+function randomArrayId(arr) {
+  return Math.floor(Math.random() * (arr.length - 0 + 1)) + 0;
+}
+
+async function selectRandomCodeName(parsedContentPormise) {
+  return await parsedContentPormise
+    .then(codeNameArray => codeNameArray[randomArrayId(codeNameArray)])
+    .then(console.log);
+}
+
+selectRandomCodeName(parseContent(fetchContent()));
+
 // console.log(fetchContent());
 
 function cleanUndefinedInArray(arr) {
