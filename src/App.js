@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-import * as api from "./Api";
+import * as api from "./api";
 
 // test
 api.asyncLogSelectedRandomCodeName();
