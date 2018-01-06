@@ -1,23 +1,23 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 import * as api from "./api";
 
-// test
-api.asyncLogSelectedRandomCodeName();
-
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {codeName: "", origin: ""};
+  }
+
+  componentDidMount() {
+    api.asyncSelectRandomCodeName()
+      .then(codeNameArray => this.setState({codeName: codeNameArray[0], origin: codeNameArray[1]}));
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {`Your new project code name is "${this.state.codeName}".`}<br/>{`It was also orginally used for ${this.state.origin}.`}
       </div>
     );
   }
