@@ -20,7 +20,6 @@
   "bugs": {
     "url": "https://github.com/hexrcs/codenamegen/issues"
   },
-  "homepage": "https://github.com/hexrcs/codenamegen#readme",
   "dependencies": {
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
