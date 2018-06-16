@@ -210,3 +210,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/git,vim,node,linux,macos,windows,jetbrains+all,visualstudiocode
+
+# Ignore /build
+/build
